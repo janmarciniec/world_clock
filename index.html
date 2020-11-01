@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Clock</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <script>
+            function getDate(offset)
+            {
+                var date = new Date();
+                date.setHours(date.getHours() + offset);
+
+                var day = date.getDate();
+
+                var month = date.getMonth() + 1;
+                if (month < 10)
+                    month = "0" + month;
+
+                var year = date.getFullYear();
+
+                var hours = date.getHours();
+                if (hours < 10)
+                    hours = "0" + hours;
+
+                var minutes = date.getMinutes();
+                if (minutes < 10)
+                    minutes = "0" + minutes;
+
+                var seconds = date.getSeconds();
+                if (seconds < 10)
+                    seconds = "0" + seconds;
+
+                return day + "/" + month + "/" + year + " | " + hours + ":" + minutes + ":" + seconds;
+            }
+
+            function display()
+            {
+                document.getElementById("lublin").innerHTML = getDate(0);
+                document.getElementById("ny").innerHTML = getDate(-6);
+                document.getElementById("sydney").innerHTML = getDate(+10);
+
+                setTimeout("display()", 1000);
+            }
+        </script>
+    </head>
+
+    <body onload="display();">
+        <b>Lublin:</b>
+        <div id="lublin"></div>
+        
+        <b><br>New York:</b>
+        <div id="ny"></div>
+        
+        <b><br>Sydney:</b>
+        <div id="sydney"></div>
+    </body>
+</html>
